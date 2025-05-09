@@ -31,3 +31,41 @@
 #define RU_LETTER_E     u'э'
 #define RU_LETTER_YU    u'ю'
 #define RU_LETTER_YA    u'я'
+
+// u'\u0484' - мягкость
+// u'\u0301' - ударение
+#define UNI_ACCENT = 52353;
+#define UNI_OVER = 53892;
+#define LET_A = 53424;
+#define LET_B = 53425;
+#define LET_V = 53426;
+#define LET_G = 53427;
+#define LET_D = 53428;
+#define LET_YE = 53429;
+#define LET_YO = 53649;
+#define LET_ZH = 53430;
+#define LET_Z = 53431;
+#define LET_I = 53432;
+#define LET_J = 53433;
+#define LET_K = 53434;
+#define LET_L = 53435;
+#define LET_M = 53436;
+#define LET_N = 53437;
+#define LET_O = 53438;
+#define LET_P = 53439;
+#define LET_R = 53632;
+#define LET_S = 53633;
+#define LET_T = 53634;
+#define LET_U = 53635;
+#define LET_F = 53636;
+#define LET_H = 53637;
+#define LET_TS = 53638;
+#define LET_CH = 53639;
+#define LET_SH = 53640;
+#define LET_SHA = 53641;
+#define LET_TVERD = 53642;
+#define LET_II = 53643;
+#define LET_MYAGKIY = 53644;
+#define LET_E = 53645;
+#define LET_YU = 53646;
+#define LET_YA = 53647;

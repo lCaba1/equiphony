@@ -1,5 +1,3 @@
 #include "./levenshtein.hxx"
-#include <codecvt>
-#include <locale>
+#include "./converter.hxx"
 #include <iostream>
-#include <iomanip>
