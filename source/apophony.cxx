@@ -5,19 +5,19 @@
 using namespace std;
 
 // Мена в рамках одного фонемотипа ( г↔к↔х, в↔ф, ж↔ч↔ш↔щ, д↔т, з↔с, п↔б ) = - 0,5
-bool definePhonemotype(char16_t l, char16_t r)
+bool definePhonemotype(uint l, uint r)
 {
     if (min(l, r) != l) swap(l, r);
 
-    if (l == RU_LETTER_G && (r == RU_LETTER_K || r == RU_LETTER_KH) || 
-        l == RU_LETTER_K && r == RU_LETTER_KH ||
-        l == RU_LETTER_V && r == RU_LETTER_F ||
-        l == RU_LETTER_ZH && (r == RU_LETTER_CH || r == RU_LETTER_SH || r == RU_LETTER_SHCH) ||
-        l == RU_LETTER_CH && (r == RU_LETTER_SH || r == RU_LETTER_SHCH) ||
-        l == RU_LETTER_SH && r == RU_LETTER_SHCH ||
-        l == RU_LETTER_D && r == RU_LETTER_T ||
-        l == RU_LETTER_Z && r == RU_LETTER_S ||
-        l == RU_LETTER_B && r == RU_LETTER_P)
+    if (l == LET_G && (r == LET_K || r == LET_H) || 
+        l == LET_K && r == LET_H ||
+        l == LET_V && r == LET_F ||
+        l == LET_ZH && (r == LET_CH || r == LET_SH || r == LET_SHA) ||
+        l == LET_CH && (r == LET_SH || r == LET_SHA) ||
+        l == LET_SH && r == LET_SHA ||
+        l == LET_D && r == LET_T ||
+        l == LET_Z && r == LET_S ||
+        l == LET_B && r == LET_P)
     {
         return true;
     }
@@ -26,14 +26,14 @@ bool definePhonemotype(char16_t l, char16_t r)
 }
 
 //Мена сонорных ( м↔н )/плавных ( р ↔ л )/губных ( б ↔ в, п↔ф ) = -1
-bool defineSonorous(char16_t l, char16_t r)
+bool defineSonorous(uint l, uint r)
 {
     if (min(l, r) != l) swap(l, r);
 
-    if (l == RU_LETTER_M && r == RU_LETTER_N || 
-        l == RU_LETTER_L && r == RU_LETTER_R ||
-        l == RU_LETTER_B && r == RU_LETTER_V ||
-        l == RU_LETTER_P && r == RU_LETTER_F) 
+    if (l == LET_M && r == LET_N || 
+        l == LET_L && r == LET_R ||
+        l == LET_B && r == LET_V ||
+        l == LET_P && r == LET_F) 
     {
         return true;
     }
@@ -42,22 +42,22 @@ bool defineSonorous(char16_t l, char16_t r)
 }
 
 // Мена по твердости/мягкости ( в↔в’, т↔т’, ш ↔ щ и т.п.) = -1,5
-bool defineHardness(char16_t l, char16_t r, bool soft_change)
+/*bool defineHardness(char16_t l, char16_t r, bool soft_change)
 {
     if (soft_change) return true;
 
     return false;
-}
+}*/
 
 // Мена смычных ( б/п↔д/т )/смычно-щелевых( ц↔ч ) = -2
-bool defineOcclusive(char16_t l, char16_t r)
+bool defineOcclusive(uint l, uint r)
 {
     if (min(l, r) != l) swap(l, r);
 
-    if (l == RU_LETTER_B && (r == RU_LETTER_D || r == RU_LETTER_T) || 
-        l == RU_LETTER_P && r == RU_LETTER_T ||
-        l == RU_LETTER_D && r == RU_LETTER_P ||
-        l == RU_LETTER_TS && r == RU_LETTER_CH) 
+    if (l == LET_B && (r == LET_D || r == LET_T) || 
+        l == LET_P && r == LET_T ||
+        l == LET_D && r == LET_P ||
+        l == LET_TS && r == LET_CH) 
     {
         return true;
     }
@@ -72,25 +72,25 @@ bool defineOcclusive(char16_t l, char16_t r)
 }*/
 
 // Произвольная мена между группами (сонорные ↔ плавные ↔ шумные и т.д.) = -3
-bool defineGroup(char16_t a, char16_t b)
+bool defineGroup(uint a, uint b)
 {
     return false;
 }
 
 // Мена мягкого на йоту = -2,5
-bool defineSoftIota(char16_t a, char16_t b)
+bool defineSoftIota(uint a, uint b)
 {
     return false;
 }
 
 //Мена твердого на йоту = -3,5
-bool defineHardIota(char16_t a, char16_t b)
+bool defineHardIota(uint a, uint b)
 {
     return false;
 }
 
 //
-double defineCost(char16_t l, char16_t r, bool soft_change)
+double defineCost(uint l, uint r)
 {
     double cost = 0;
 
@@ -100,8 +100,8 @@ double defineCost(char16_t l, char16_t r, bool soft_change)
         cost += 0.5;
     else if (defineSonorous(l, r))
         cost += 1;
-    else if (defineHardness(l, r, soft_change))
-        cost += 1.5;
+    /*else if (defineHardness(l, r, soft_change))
+        cost += 1.5;*/
     else if (defineOcclusive(l, r))
         cost += 2;
     /*else if (defineDeafness(l, r))

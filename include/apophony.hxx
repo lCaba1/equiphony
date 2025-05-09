@@ -1,10 +1,12 @@
-bool definePhonemotype(char16_t, char16_t);
-bool defineSonorous(char16_t, char16_t);
-bool defineHardness(char16_t, char16_t, bool);
-bool defineOcclusive(char16_t, char16_t);
-bool defineDeafness(char16_t, char16_t);
-bool defineGroup(char16_t, char16_t);
-bool defineSoftIota(char16_t, char16_t);
-bool defineHardIota(char16_t, char16_t);
+#include <sys/types.h>
 
-double defineCost(char16_t, char16_t, bool);
+bool definePhonemotype(uint, uint);
+bool defineSonorous(uint, uint);
+//bool defineHardness(char16_t, char16_t, bool);
+bool defineOcclusive(uint, uint);
+//bool defineDeafness(uint, uint);
+bool defineGroup(uint, uint);
+bool defineSoftIota(uint, uint);
+bool defineHardIota(uint, uint);
+
+double defineCost(uint, uint);
