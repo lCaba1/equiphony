@@ -12,7 +12,7 @@ vector<vector<double>> levenshteinDistWeighted(vector<uint> lword, vector<uint> 
     for (int i = 1; i <= lwsize; ++i) {
         for (int j = 1; j <= rwsize; ++j) {
             result[i][j] = min(result[i - 1][j - 1] + defineCost(lword[i - 1], rword[j - 1]), 
-                min(result[i - 1][j] + 20, result[i][j - 1] + 20));
+                min(result[i - 1][j] + 10, result[i][j - 1] + 10));
         }
     }
     return result;
