@@ -9,7 +9,7 @@ int main() {
     vector<char*> lines;
     string temp;
 
-    cout << "\nОжидается ввод строк... (для завершения Ctrl+D)\n\n";
+    //cout << "\nОжидается ввод строк... (для завершения Ctrl+D)\n\n";
 
     while (getline(cin, temp)) {
         char* line = new char[temp.length() + 1];
@@ -17,23 +17,24 @@ int main() {
         lines.push_back(line);
     }
 
-    cout << "\n\n";
+    //cout << "\n\n";
 
     vector<vector<uint>> codes;
     for (int i = 0; i < lines.size(); ++i) codes.push_back(convert(lines[i]));
 
     
-
+    //cout << "Преобразование строк:\n\n";
     for (int i = 0; i < codes.size() - 1; ++i) {
         for (int j = i + 1; j < codes.size(); ++j) {
             vector<vector<double>> dist = levenshteinDistWeighted(codes[i], codes[j]);
-            cout << "Сравнение строк " << i << " и " << j << ":\n";
-            for (int k = 0; k < dist.size(); ++k) {
+            cout << i + 1 << "=>" << j + 1<< " cost ";
+            /*for (int k = 0; k < dist.size(); ++k) {
                 for (int l = 0; l < dist[k].size(); ++l) {
                     cout << dist[k][l] << ' ';
                 }
                 cout << '\n';
-            }
+            }*/
+            cout << dist[dist.size() - 1][dist[0].size() - 1];
             cout << '\n';
         }
     }
